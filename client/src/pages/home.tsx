@@ -24,7 +24,7 @@ export default function Home() {
           variant="outline"
           size="lg"
           className="border-2 border-white hover:bg-white/10 transition-colors duration-200 px-8 py-6 text-lg"
-          onClick={() => window.open('https://www.doordash.com', '_blank')}
+          onClick={() => window.open('https://www.doordash.com', '_blank', 'noopener,noreferrer')}
         >
           Order Food on DoorDash →
         </Button>
