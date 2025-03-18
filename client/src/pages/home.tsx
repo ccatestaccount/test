@@ -22,18 +22,12 @@ export default function Home() {
         <h2 className="text-2xl font-semibold text-white">Hungry? Here's a link to DoorDash</h2>
         <Button
           variant="outline"
-          className="border-2 border-white hover:bg-white/10 transition-colors duration-200"
+          size="lg"
+          className="border-2 border-white hover:bg-white/10 transition-colors duration-200 px-8 py-6 text-lg"
           onClick={() => window.open('https://www.doordash.com', '_blank')}
         >
-          Open DoorDash
+          Order Food on DoorDash →
         </Button>
-        <div className="w-[800px] h-[600px] border-2 border-white/20 rounded-lg overflow-hidden">
-          <iframe 
-            src="https://www.doordash.com" 
-            className="w-full h-full"
-            title="DoorDash"
-          />
-        </div>
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
