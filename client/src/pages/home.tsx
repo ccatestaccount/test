@@ -19,14 +19,14 @@ export default function Home() {
       </Button>
 
       <div className="text-center space-y-4">
-        <h2 className="text-2xl font-semibold text-white">Hungry? Here's a link to DoorDash</h2>
+        <h2 className="text-2xl font-semibold text-white">Feeling kind? Here's a link to Donate to starving kids in africa!</h2>
         <Button
           variant="outline"
           size="lg"
           className="border-2 border-white hover:bg-white/10 transition-colors duration-200 px-8 py-6 text-lg"
-          onClick={() => window.open('https://www.doordash.com', '_blank', 'noopener,noreferrer')}
+          onClick={() => window.open('https://www.feedthechildren.org', '_blank', 'noopener,noreferrer')}
         >
-          Order Food on DoorDash →
+          donate to starving kids →
         </Button>
       </div>
 
