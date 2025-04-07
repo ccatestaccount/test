@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { X, Camera } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 interface CameraFeedProps {
@@ -10,6 +10,7 @@ interface CameraFeedProps {
 
 export function CameraFeed({ onClose }: CameraFeedProps) {
   const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const webcamRef = useRef<Webcam>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -30,6 +31,24 @@ export function CameraFeed({ onClose }: CameraFeedProps) {
         });
       });
   }, [toast]);
+
+  const capturePhoto = async () => {
+    if (webcamRef.current) {
+      const imageSrc = webcamRef.current.getScreenshot();
+      if (imageSrc) {
+        // Create a link element and trigger download
+        const link = document.createElement('a');
+        link.href = imageSrc;
+        link.download = `photo-${new Date().toISOString()}.jpg`;
+        link.click();
+
+        toast({
+          title: "Photo Captured",
+          description: "Your photo has been saved to your downloads folder.",
+        });
+      }
+    }
+  };
 
   if (hasPermission === false) {
     return (
@@ -56,12 +75,24 @@ export function CameraFeed({ onClose }: CameraFeedProps) {
       <div className="relative aspect-video w-full overflow-hidden rounded-lg">
         {hasPermission && (
           <Webcam
+            ref={webcamRef}
             audio={false}
             className="w-full h-full object-cover"
             mirrored
             screenshotFormat="image/jpeg"
           />
         )}
+      </div>
+
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+        <Button
+          variant="outline"
+          size="icon"
+          className="w-12 h-12 rounded-full border-2 border-white hover:bg-white/10 transition-colors duration-200"
+          onClick={capturePhoto}
+        >
+          <Camera className="h-6 w-6" />
+        </Button>
       </div>
     </div>
   );
