@@ -6,7 +6,7 @@ export default function TitleScreen() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center gap-8 bg-black">
-      <h1 className="text-8xl font-bold text-white tracking-widest animate-fade-in">TREY</h1>
+      <h1 className="text-8xl font-bold text-white tracking-widest animate-fade-in">jasean rice</h1>
       <Button
         variant="outline"
         size="lg"
