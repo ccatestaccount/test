@@ -37,15 +37,26 @@ export function CameraFeed({ onClose }: CameraFeedProps) {
       const imageSrc = webcamRef.current.getScreenshot();
       if (imageSrc) {
         // Create a link element and trigger download
-        const link = document.createElement('a');
-        link.href = imageSrc;
-        link.download = `photo-${new Date().toISOString()}.jpg`;
-        link.click();
+        try {
+          const link = document.createElement('a');
+          link.href = imageSrc;
+          link.download = `photo-${new Date().toISOString().replace(/:/g, '-')}.jpg`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
 
-        toast({
-          title: "Photo Captured",
-          description: "Your photo has been saved to your downloads folder.",
-        });
+          toast({
+            title: "Photo Captured",
+            description: "Your photo has been saved to your downloads folder.",
+          });
+        } catch (error) {
+          console.error("Error saving photo:", error);
+          toast({
+            variant: "destructive",
+            title: "Error Saving Photo",
+            description: "There was a problem saving your photo. Please try again.",
+          });
+        }
       }
     }
   };

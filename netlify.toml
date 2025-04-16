@@ -1,6 +1,6 @@
 [build]
-  command = "npm run build"
-  publish = "dist"
+  command = "./netlify-build.sh"
+  publish = "dist/public"
 
 [[redirects]]
   from = "/*"

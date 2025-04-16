@@ -31,7 +31,8 @@ export default function Home() {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-[800px] p-0 bg-black border-white/20">
+        <DialogContent className="sm:max-w-[800px] p-0 bg-black border-white/20" aria-describedby="camera-feed-description">
+          <div id="camera-feed-description" className="sr-only">Camera Feed Modal</div>
           <CameraFeed onClose={() => setIsOpen(false)} />
         </DialogContent>
       </Dialog>
